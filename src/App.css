@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+  padding: 2rem;
+}
+
+input {
+  padding: 0.5rem;
+  width: 60%;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.movie-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-detail {
+  text-align: left;
+  margin-top: 2rem;
+}
