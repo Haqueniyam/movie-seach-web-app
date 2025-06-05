@@ -1,23 +1,30 @@
 // src/App.js
-import React from 'react';
+import React from "react";
 
 function Login() {
-   const handleLogin = ({onLoginSuccess}) => {
-    const fakeSessionToken = 'react-miniapp-fake-token-xyz123';
+  const handleLogin = ({ onLoginSuccess }) => {
+    // At the top of your mini app's main component or authentication logic
+    // const queryParams = new URLSearchParams(window.location.search);
+    // const authToken = queryParams.get("token");
 
-    console.log("fakeSessionToken", fakeSessionToken);
-    
+    // Or alternatively, you can use the injected JavaScript variable
+    const authToken = window.authToken;
+
+    // const fakeSessionToken = String(demo);
+
+    // console.log("fakeSessionToken", fakeSessionToken);
+
     // Store token in localStorage
-    localStorage.setItem('sessionToken', fakeSessionToken);
+    localStorage.setItem('sessionToken', authToken);
 
     if (window.ReactNativeWebView && window.ReactNativeWebView.postMessage) {
       window.ReactNativeWebView.postMessage(
-        JSON.stringify({ type: 'AUTH_SUCCESS', token: fakeSessionToken })
+        JSON.stringify({ type: "AUTH_SUCCESS", token: authToken })
       );
       // Notify parent React app about login success
       if (onLoginSuccess) onLoginSuccess();
     } else {
-      console.warn('ReactNativeWebView not available');
+      console.warn("ReactNativeWebView not available");
     }
   };
 
@@ -40,7 +47,10 @@ function Login() {
   return (
     <div style={{ padding: 20 }}>
       <h1>React Mini App Wallet Auth Demo</h1>
-      <button onClick={handleLogin} style={{ fontSize: 18, padding: '10px 20px' }}>
+      <button
+        onClick={handleLogin}
+        style={{ fontSize: 18, padding: "10px 20px" }}
+      >
         Login (Simulate SIWE)
       </button>
     </div>
@@ -48,4 +58,3 @@ function Login() {
 }
 
 export default Login;
-

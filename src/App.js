@@ -11,6 +11,7 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+
   // On app load, check if token exists in localStorage
   useEffect(() => {
     const token = localStorage.getItem("sessionToken");
@@ -18,6 +19,7 @@ function App() {
     if (token) {
       setIsLoggedIn(true);
     }
+  
   }, []);
 
   // Handler to call after successful login (from Login component)
@@ -47,22 +49,17 @@ function App() {
     setMovies(response.data.Search || []);
   };
 
-const params = new URLSearchParams(window.location.search);
-const token = params.get('token');
-console.log("token12", token);
-// if (token) {
-//   localStorage.setItem('sessionToken', token);
-//   // Update UI accordingly
-// }
-
+  // if (token) {
+  //   localStorage.setItem('sessionToken', token);
+  //   // Update UI accordingly
+  // }
 
   return (
     <div className="App">
       {!isLoggedIn ? (
-        <Login onLoginSuccess={handleLoginSuccess} />
+        <Login onLoginSuccess={handleLoginSuccess}/>
       ) : (
         <>
-       
           <h1>🎬 Movie Search App</h1>
           <form onSubmit={handleSearch}>
             <input
@@ -91,7 +88,7 @@ console.log("token12", token);
             </div>
           )}
 
-             <button
+          <button
             onClick={handleLogout}
             style={{
               float: "right",
